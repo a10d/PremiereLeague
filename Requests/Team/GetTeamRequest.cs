@@ -1,6 +1,7 @@
 namespace PremiereLeague.Requests.Team;
 
-public class GetTeamByNameRequest
+public class GetTeamRequest
 {
-    public string? Name { get; set; }
+    public int? Id { get; set; } = null;
+    public string? Name { get; set; } = null;
 }
