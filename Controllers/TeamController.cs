@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using PremiereLeague.Entities;
 using PremiereLeague.Requests.Team;
@@ -10,12 +9,12 @@ namespace PremiereLeague.Controllers;
 [Route("team/[action]")]
 public class TeamController : Controller
 {
-    private TeamService Service { get; }
-
     public TeamController(TeamService service)
     {
         Service = service;
     }
+
+    private TeamService Service { get; }
 
     [HttpGet]
     public ActionResult<List<Team>> GetTeams()
@@ -29,13 +28,8 @@ public class TeamController : Controller
         Team? team = null;
 
         if (r.Id != null)
-        {
             team = Service.FindTeamById(r.Id.Value);
-        }
-        else if (r.Name != null)
-        {
-            team = Service.FindTeamByName(r.Name);
-        }
+        else if (r.Name != null) team = Service.FindTeamByName(r.Name);
 
         return team == null ? NotFound() : Ok(team);
     }

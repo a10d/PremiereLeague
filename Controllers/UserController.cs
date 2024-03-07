@@ -9,14 +9,14 @@ namespace PremiereLeague.Controllers;
 [Route("user/[action]")]
 public class UserController : Controller
 {
-    private UserService UserService { get; }
-    private TeamService TeamService { get; }
-
     public UserController(UserService userService, TeamService teamService)
     {
         UserService = userService;
         TeamService = teamService;
     }
+
+    private UserService UserService { get; }
+    private TeamService TeamService { get; }
 
     [HttpGet]
     public ActionResult<List<User>> GetUsers()
@@ -25,17 +25,11 @@ public class UserController : Controller
     }
 
 
-    protected User? GetUserFromRequest(GetUserRequest r)
+    private User? GetUserFromRequest(GetUserRequest r)
     {
-        if (r.Id != null)
-        {
-            return UserService.FindUserById(r.Id.Value);
-        }
+        if (r.Id != null) return UserService.FindUserById(r.Id.Value);
 
-        if (r.Name != null)
-        {
-            return UserService.FindUserByName(r.Name);
-        }
+        if (r.Name != null) return UserService.FindUserByName(r.Name);
 
         return null;
     }

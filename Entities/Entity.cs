@@ -1,6 +1,3 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
 namespace PremiereLeague.Entities;
 
 public abstract class Entity

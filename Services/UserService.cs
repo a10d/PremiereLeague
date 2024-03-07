@@ -17,7 +17,7 @@ public class UserService
         return new User
         {
             Id = record["id"].As<int>(),
-            Name = record["name"].As<string>(),
+            Name = record["name"].As<string>()
         };
     }
 
@@ -71,7 +71,6 @@ public class UserService
     {
         _db.Query("match (u:User) where id(u) = $id detach delete u", new { id = user.Id });
     }
-
 
 
     public void AddTeamLike(User user, Team team)

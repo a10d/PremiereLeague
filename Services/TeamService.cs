@@ -17,7 +17,7 @@ public class TeamService
         return new Team
         {
             Id = record["id"].As<int>(),
-            Name = record["name"].As<string>(),
+            Name = record["name"].As<string>()
         };
     }
 
@@ -78,7 +78,4 @@ public class TeamService
             .Select(MapTeam)
             .ToList();
     }
-
-
-
 }

@@ -5,13 +5,13 @@ namespace PremiereLeague.Services;
 
 public class DbService
 {
-    private IDriver Client { get; }
-
     public DbService()
     {
         Client = GraphDatabase.Driver("bolt://localhost:7687");
         Client.TryVerifyConnectivityAsync().Wait();
     }
+
+    private IDriver Client { get; }
 
     public IResult Query(string query, object? parameters = null)
     {
