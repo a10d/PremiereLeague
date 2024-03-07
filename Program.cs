@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<DbService>();
 builder.Services.AddSingleton<TeamService>();
+builder.Services.AddSingleton<UserService>();
 
 var app = builder.Build();
 

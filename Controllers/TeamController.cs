@@ -24,16 +24,19 @@ public class TeamController : Controller
     }
 
     [HttpGet]
-    public ActionResult<Team> GetTeamByName([FromBody] GetTeamByNameRequest r)
+    public ActionResult<Team> GetTeam([FromBody] GetTeamRequest r)
     {
-        var team = Service.FindTeamByName(r.Name);
-        return team == null ? NotFound() : Ok(team);
-    }
+        Team? team = null;
 
-    [HttpGet]
-    public ActionResult<Team> GetTeamById([FromBody] GetTeamByIdRequest r)
-    {
-        var team = Service.FindTeamById(r.Id);
+        if (r.Id != null)
+        {
+            team = Service.FindTeamById(r.Id.Value);
+        }
+        else if (r.Name != null)
+        {
+            team = Service.FindTeamByName(r.Name);
+        }
+
         return team == null ? NotFound() : Ok(team);
     }
 

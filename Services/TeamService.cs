@@ -65,12 +65,20 @@ public class TeamService
         return MapTeam(result.Peek());
     }
 
-    public bool DeleteTeam(Team team)
+    public void DeleteTeam(Team team)
     {
-        _db.Query("match (t:Team) where t.id = $id detach delete t", new
-        {
-            id = team.Id
-        }).Consume();
-        return true;
+        _db.Query("match (t:Team) where id(t) = $id detach delete t", new { id = team.Id });
     }
+
+
+    public List<Team> GetTeamLikesForUser(User user)
+    {
+        return _db.Query("match (u:User)-[:LIKES]->(t:Team) where id(u) = $userId return t.name as name, id(t) as id",
+                new { userId = user.Id })
+            .Select(MapTeam)
+            .ToList();
+    }
+
+
+
 }
