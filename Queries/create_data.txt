@@ -1,0 +1,33 @@
+
+
+create  (manchester:City {name: "Manchester"}),
+		(london:City {name: "London"}),
+		(liverpool:City {name: "Liverpool"}),
+		(bristol:City {name: "Bristol"}),
+		(cardif:City {name: "Cardif"}),
+		(birmingham:City {name: "Birmingham"}),
+
+	 	(oldTrafford:Stadium {name: "Old Trafford"})-[:IS_IN]->(manchester),
+		(emirates:Stadium {name: "Emirates"})-[:IS_IN]->(london),
+		(tottenhamHotspur:Stadium {name: "Tottenham Hotspur Stadium"})-[:IS_IN]->(london),
+		(anfield:Stadium {name: "Anfield"})-[:IS_IN]->(liverpool),
+		(stamfordBridge:Stadium {name: "Stamford Bridge"})-[:IS_IN]->(london),
+		(uptonPark:Stadium {name: "Upton Park"})-[:IS_IN]->(london),
+		(goodisonPark:Stadium {name: "Goodison Park"})-[:IS_IN]->(liverpool),
+
+		(arsenal:Team {name: "Arsenal"})-[:HOME_STADIUM]->(emirates),
+		(manchesterUnited:Team {name: "Manchester United"})-[:HOME_STADIUM]->(oldTrafford),
+		(tottenham:Team {name: "Tottenham"})-[:HOME_STADIUM]->(tottenhamHotspur),
+		(liverpoolTeam:Team {name: "Liverpool"})-[:HOME_STADIUM]->(anfield),
+		(chelsea:Team {name: "Chelsea"})-[:HOME_STADIUM]->(stamfordBridge),
+
+		(james:User {name: "James"}),
+		(george:User {name: "George"}),
+		(mike:User {name: "Mike"}),
+		(alan:User {name: "Alan"}),
+		(joe:User {name: "Joe"}),
+
+		(james)-[:LIKES]->(tottenham),
+		(george)-[:LIKES]->(liverpoolTeam),
+		(mike)-[:LIKES]->(anfield);
+
